@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Optional;
 
 public interface JpaPriceRepository extends JpaRepository<PriceEntity, Long> {
 
@@ -14,8 +14,10 @@ public interface JpaPriceRepository extends JpaRepository<PriceEntity, Long> {
             WHERE p.productId = :productId
               AND p.brandId   = :brandId
               AND :date BETWEEN p.startDate AND p.endDate
+            ORDER BY p.priority DESC
+            LIMIT 1
             """)
-    List<PriceEntity> findByProductIdAndBrandIdAndDate(
+    Optional<PriceEntity> findTopByProductIdAndBrandIdAndDate(
             @Param("productId") Long productId,
             @Param("brandId")   Long brandId,
             @Param("date")      LocalDateTime date

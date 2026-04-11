@@ -11,7 +11,7 @@ public record PriceResponse(
         Integer priceList,
         LocalDateTime startDate,
         LocalDateTime endDate,
-        BigDecimal price,
+        BigDecimal amount,
         String currency
 ) {
     public static PriceResponse from(Price price) {

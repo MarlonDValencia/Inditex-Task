@@ -3,9 +3,9 @@ package com.inditex.prices.domain.port.out;
 import com.inditex.prices.domain.model.Price;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Optional;
 
 public interface PriceRepositoryPort {
 
-    List<Price> findByProductIdAndBrandIdAndDate(Long productId, Long brandId, LocalDateTime date);
+    Optional<Price> findTopProductByIdAndBrandIdAndDate(Long productId, Long brandId, LocalDateTime date);
 }
